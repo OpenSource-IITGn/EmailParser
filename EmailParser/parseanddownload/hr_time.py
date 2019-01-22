@@ -62,6 +62,7 @@ def get_date(date_lines, email_date):
             date_list.append((get_date_day(line[0],email_date,day.index(key)),line[1]))
     return date_list
 
+#Returns the lines which have the keywords
 def get_info(lines,keyword):
     line_get_info = []
     for line in lines:
@@ -72,16 +73,22 @@ def get_info(lines,keyword):
     return line_get_info
 
 
+#Generates the lines from the text
 def get_lines(text):
+    #Required changes to text for splitting
     text = text.replace('Dr. ','Dr ')
     text = text.replace('Prof. ','Prof ')
     text = text.replace('Mr. ','Mr ')
     text = text.replace('Mrs. ','Mrs ')
     text = text.replace('  ',' ')
+    #Generating lines by spliting at ;,. and \n
     temp_line = re.split(';|\. |\n|\*',text)
+    #List containing lines
     lines = []
+    #Used to add the line number
     i = 0
     for line in temp_line:
+        #Doing the required changes to text
         line = line.replace('Dr ','Dr. ')
         line = line.replace('Prof ','Prof. ')
         line = line.replace('Mr ','Mr. ')
