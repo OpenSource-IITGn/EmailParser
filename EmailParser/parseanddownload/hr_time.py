@@ -3,7 +3,9 @@ from datetime import date
 import datetime
 import re
 
+#This function tries finding the time that is in the given lines
 def get_time(time_lines):
+    #Final list to be returned
     time_list = []
     for line in time_lines:
         k = re.search(r' \d+[-| |(to)|\d|(am)|(pm)|(AM)|(PM)|:]*[a|p|A|P][m|M]',line[0])
@@ -13,6 +15,8 @@ def get_time(time_lines):
             continue
     return time_list
 
+
+#This finds the 
 def get_date_month(text, email_date,month):
     year = email_date.year
     if month+1 < email_date.month:
@@ -85,19 +89,3 @@ def get_lines(text):
         lines.append((line.strip(),i))
         i+=1
     return lines
-
-def __main__(text):
-    keyword = ['date','monday','tuesday','wednesday','thrusday','friday',
-               'saturday','sunday','january','february','march','april','may','june','july',
-               'august','september','october','november','december']
-    print(get_date((get_info(get_lines(text),keyword)),datetime.date(2018,12,12)))
-    keyword = ['time','am','pm']
-    time_lines = get_info(get_lines(text),keyword)
-    keyword = ['1','2','3','4','5','6','7','8','9','0']
-    time_lines = get_info(time_lines[:],keyword)
-    print(get_time(time_lines))
-    
-
-#text = """
-#"""
-#__main__(text)
